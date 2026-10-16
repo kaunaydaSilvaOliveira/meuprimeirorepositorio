@@ -1,0 +1,53 @@
+// Algoritmo para gerar um número inteiro aleatório entre um intervalo [min, max]
+export function gerarNumeroAleatorio(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Função que aplica o método replace para transformar palavras-chave em uma string
+export function personalizarMensagem(texto, termoAntigo, termoNovo) {
+  return texto.replace(termoAntigo, termoNovo);
+}
+import { gerarNumeroAleatorio, personalizarMensagem } from './utils.js';
+
+// 1. Uso de Algoritmo de Aleatoriedade e Condicionais
+const pontuacao = gerarNumeroAleatorio(1, 100);
+let statusUsuario = "";
+
+if (pontuacao >= 70) {
+  statusUsuario = "Excelente";
+} else if (pontuacao >= 40) {
+  statusUsuario = "Regular";
+} else {
+  statusUsuario = "Necessita de melhoria";
+}
+
+console.log(`Pontuação gerada: ${pontuacao} | Status: ${statusUsuario}`);
+
+// 2. Uso do método replace
+const modeloTexto = "Olá, [NOME]! Seu desempenho atual foi classificado como [STATUS].";
+let mensagemFormatada = personalizarMensagem(modeloTexto, "[NOME]", "Dev Alura");
+mensagemFormatada = personalizarMensagem(mensagemFormatada, "[STATUS]", statusUsuario);
+
+console.log("\nMensagem final:");
+console.log(mensagemFormatada);
+
+// 3. Uso do "for...of" com condição de parada (break)
+const historicoAcoes = [
+  "Iniciar sistema",
+  "Carregar dados",
+  "Validar usuário",
+  "ERRO_CRITICO",
+  "Gerar relatório",
+  "Encerrar"
+];
+
+console.log("\nExecutando histórico de ações:");
+
+for (const acao of historicoAcoes) {
+  // Condição de parada ao encontrar o erro
+  if (acao === "ERRO_CRITICO") {
+    console.log("-> Interrompendo processamento: Falha identificada no sistema.");
+    break;
+  }
+  console.log(`-> Processando: ${acao}`);
+}
